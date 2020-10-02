@@ -12,23 +12,25 @@ class Main {
      */
     public static void reorder(Queue<Integer> q) 
     {
-			Queue<Integer> x = q;
-			int wow;
-				for(int i = q.size(); i > 0; i--){
-					q[i] = null;
+			Stack<Integer> stack = new Stack<Integer>();
+			int length = 0;
+			while(!q.isEmpty()){
+				length++;
+				stack.push(q.remove());
+			}
+			while(!stack.isEmpty()){
+				q.add(stack.pop());
+			}
+			for(int i = 0; i<length; i++){
+				if(q.peek()>= 0){
+					stack.push(q.remove());
+				} else {
+					q.add(q.remove());
 				}
-        for(int i = x.size(); i> 0; i--){
-					wow = x(i);
-					for(int j = 0; j < x.size(); j++){
-						if((x(j) != null) && (wow > x(j))){
-							wow = x(j);
-							x(j) = null;
-						}
-					}
-					q.add(wow);
-						
-				}
-
+			}
+			while(!stack.isEmpty()){
+				q.add(stack.pop());
+			}
     }
 
 
